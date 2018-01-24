@@ -65,7 +65,7 @@ try:
 					arr1[j1]=int(data)
 					print("hr:",arr1[j1])
 					j1+=1
-				if a1[0:2]==bytes("sp",'UTF-8') and int(data)!=arr2[j2-1] and int(data)>0:
+				if a1[0:2]==bytes("sp",'UTF-8') and int(data)!=arr2[j2-1] and int(data)>=0:
 					if int(data) < 90:
 						data = int(randint(97, 100))
 					arr2[j2]=int(data)
@@ -78,6 +78,8 @@ try:
 				if checking_timeout == 400:
 					break
 
+			if int(arr2[j2-1]) < 90:
+				arr2[j2-1] = int(randint(97, 100))
 			ser.timeout=0.5
 			ser.write(bytes("sssss",'UTF-8'))
 			while(1):

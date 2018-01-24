@@ -112,7 +112,7 @@ while(1):
                     r_scale = HEALTHSYSTEM.scale.stop.is_exist()
             if c_height:
                 while not r_height:
-                    r_height = HEALTHSYSTEM.height.stop.is_exist()
+                    r_height = os.path.exists("/home/pi/healthsystem/height_result") or HEALTHSYSTEM.height.stop.is_exist()
 
             if (r_temp and c_temp) + (r_spo2 and c_spo2) + (r_scale and c_scale) + (r_height and c_height):
                 print "Preparing result"
@@ -133,7 +133,7 @@ while(1):
                 if r_hr and os.path.exists("/home/pi/healthsystem/hr_result"): 
                     os.remove("/home/pi/healthsystem/hr_result")
 
-                if r_height and os.path.exists("/home/pi/healthsystem/height_result"): 
+                if r_height: 
                     os.remove("/home/pi/healthsystem/height_result")
 
                 if r_temp:
@@ -145,7 +145,7 @@ while(1):
                 if r_scale:
                     while not os.path.exists("/home/pi/healthsystem/scale_stop"): continue
                     os.remove('/home/pi/healthsystem/scale_stop')
-                if r_hr:
+                if r_height:
                     while not os.path.exists("/home/pi/healthsystem/height_stop"): continue
                     os.remove('/home/pi/healthsystem/height_stop')
                 break
